@@ -8,6 +8,6 @@
 ### 使用框架
 > jq,bootstrap,highcharts,vue.js
 #### 效果展示页面
-<https://nightlin92.github.io/xxf/>
+<https://nightlin92.github.io/pro-xxf/>
 
 > 要想测试实时刷新，请手动更改data.json文件
