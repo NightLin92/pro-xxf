@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>喜相逢</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="css/mySty.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container-fluid" id="main">
+        <div class="row" id="nav">
+            <div class="col-md-9 col-lg-9">
+                <form class="nav">
+                    <span>成交日期区间</span>
+                    <div class="input-append date form_datetime">
+                        <span class="add-on"><i class="icon-th glyphicon glyphicon-calendar"></i></span>
+                        <input size="16" type="text" value="" readonly>
+                    </div>
+                    &nbsp;&nbsp;—<div class="input-append date form_datetime">
+                        <span class="add-on"><i class="icon-th glyphicon glyphicon-calendar"></i></span>
+                        <input size="16" type="text" value="" readonly>
+                    </div>
+                    <span style="margin-left:20px; margin-right:20px;">成交年月</span>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i style="margin-left:30px;">年</i>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">2017</a></li>
+                            <li><a href="#">2016</a></li>
+                            <li><a href="#">2015</a></li>
+                        </ul>
+                    </div>
+                    <span>—</span>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i style="margin-left:30px;">月</i>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </div>
+                    <span style="margin-left:20px; margin-right:20px;">业务员</span>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            不限
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                            <li><a href="#">陈雪梅</a></li>
+                            <li><a href="#">吴水婷</a></li>
+                            <li><a href="#">邱国平</a></li>
+                        </ul>
+                    </div>
+                    <button type="reset" class="btn btn-primary resetBtn" ><span>重置</span></button>
+                </form>
+            </div>
+            <div class="col-md-1 col-lg-1 col-md-offset-2 col-lg-offset-2 logo-wrap">
+                <img src="images/xxf.png" id="logo" class="img-responsive" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-lg-8">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 leftBox">
+                        <div class="row sellContent">
+                            <!-- 左上角条形图部分 -->
+                            <div class="col-md-6 col-lg-6">
+                                <div class="box">
+                                    <h3>分公司销售台数TOP5</h3>
+                                    <div id="filiale"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="box">
+                                        <h3>业务员销售台数TOP5</h3>
+                                        <div id="salesmanNum"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="box">
+                                        <h3>销售部销售台数排名TOP5</h3>
+                                        <div id="departments"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6">
+                                 <div class="box">
+                                        <h3>业务员业绩金额排名TOP5</h3>
+                                        <div id="salesmanPerformance"></div>
+                                 </div>
+                            </div>
+                        </div>
+                        <!-- 品牌销售台数Top5 -->
+                        <div class="row brandWrapper">
+                            <div class="brand clearfix">
+                                <h3>品牌销售台数TOP5</h3>
+                                <div class="content">
+                                    <div class="col-md-8 col-lg-8 left">  
+                                        <div id="brandSell"></div>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 right">
+                                        <div id="sellNum"></div>
+                                        <div id="moneyNum"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 折线图 -->
+                    <div class="col-md-6 col-lg-6 line">
+                            <div class="box">
+                                <h3>车型销售趋势</h3>
+                                <div id="carTypeTrend"></div>
+                            </div>
+                            <div class="box">
+                                <h3>近一周销售台数趋势</h3>
+                                <div id="weekSellNumTrend"></div>
+                            </div>
+                            <div class="box">
+                                <h3>销售台数趋势</h3>
+                                <div id="sellNumTrend"></div>
+                            </div>
+                            <div class="box">
+                                <h3>业绩金额趋势（万元）</h3>
+                                <div id="performanceTrend"></div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <!-- 右侧部分 -->
+                <div class="row">
+                    <div id="btnGroup" class="clearfix">
+                        <div class="col-md-2 col-lg-2">
+                            <div class="lay">各项分类</div>
+                        </div>
+                        <div class="col-md-2 col-lg-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        不限
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">分类一</a></li>
+                                        <li><a href="#">分类二</a></li>
+                                        <li><a href="#">分类三</a></li>
+                                    </ul>
+                                </div>                        
+                        </div>
+
+                        <div class="col-md-2 col-lg-2">
+                            <div class="lay">区域</div>
+                        </div>
+                        <div class="col-md-2 col-lg-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        不限
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">分类一</a></li>
+                                        <li><a href="#">分类二</a></li>
+                                        <li><a href="#">分类三</a></li>
+                                    </ul>
+                                </div>                        
+                        </div>
+
+                            <div class="col-md-2 col-lg-2">
+                                <div class="lay">时间</div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            不限
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">分类一</a></li>
+                                            <li><a href="#">分类二</a></li>
+                                            <li><a href="#">分类三</a></li>
+                                        </ul>
+                                    </div>                        
+                            </div>
+                    </div>
+                </div>
+                <div class="row activity">
+                    <div class="col-md-6 col-lg-6">
+                    <div class="box">
+                        <h3>当周业务员活动分类</h3>
+                        <div id="weekActivity">
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <h3>当月业务员活动分类</h3>
+                            <div id="monthActivity">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row custome">
+                    <div class="col-md-6 col-lg-6">
+                    <div class="box">
+                        <h3>当周营销客户分类</h3>
+                        <div id="weekCustome">
+                            
+                        </div>
+                    </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <h3>当月营销客户分类</h3>
+                            <div id="monthCustome">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row detail">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <h3>业绩明细</h3>
+                            <div id="trackDetail" class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>序号</th><th>业务员</th><th>台数</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr v-for="(item,index) in salesmanNum.name">
+                                            <td>{{index+1}}</td><td>{{item}}</td><td>{{salesmanNum.series[index]}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <h3>营销漏斗模型本月各项趋势</h3>
+                            <div id="modelTrend">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="js/vue.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/highcharts-3d.js"></script>
+    <script src="js/funnel.js"></script>
+    <script src="js/controller.js"></script>
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            format: "dd MM yyyy - hh:ii"
+        });
+    </script>  
+</body>
+</html>
